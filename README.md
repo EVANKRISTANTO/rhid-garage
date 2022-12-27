@@ -6,7 +6,7 @@
 
 # About
 - Optimized
-- Save damage engine, body & visual damage
+- Save fuel, damage engine/body & visual damage
 
 # Dependency
 **[qb-menu](https://github.com/reyyghi/qb-menu-esx)**
