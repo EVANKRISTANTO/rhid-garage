@@ -1,4 +1,4 @@
-# Garage Syestem For ESX
+# Garage System For ESX
 
 **[Source](https://github.com/lockdownstudio/esx_advancedgarage)**
 
