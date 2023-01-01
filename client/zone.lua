@@ -90,7 +90,7 @@ CreateThread(function()
             local pedCoords = GetEntityCoords(PlayerPedId())
             local DistMarker = #(pedCoords - MarkerCoords)
 
-            if DistMarker < 5 then
+            if DistMarker < Config.MarkerDist then
                 DrawMarker(2, v.AmbilKendaraan.x, v.AmbilKendaraan.y, v.AmbilKendaraan.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.3, 0.2, 0.15, 200, 0, 0, 222, false, false, false, true, false, false, false)
                 sleep = 0
             end
