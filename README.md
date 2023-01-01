@@ -13,4 +13,4 @@
 
 **[qb-drawtext](https://github.com/reyyghi/qb-drawtext-esx)**
 
-**[ox_target](https://github.com/overextended/ox_target/releases)**
+**[PolyZone](https://github.com/mkafrin/PolyZone)**
