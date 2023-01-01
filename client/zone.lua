@@ -26,12 +26,12 @@ CreateThread(function ()
             })
             zoneImpound:onPlayerInOut(function(isPointInside)
                 if isPointInside then
-                    exports['rhid-drawtext']:DrawText("E - Aksess Asuransi" .. "<br>" .. g.label)
+                    exports['qb-drawtext']:DrawText("E - Aksess Asuransi" .. "<br>" .. g.label)
                     currentGarage = g
                     AKendaraan = true
                 else
-                    exports['rhid-menu']:closeMenu()
-                    exports['rhid-drawtext']:HideText()
+                    exports['qb-menu']:closeMenu()
+                    exports['qb-drawtext']:HideText()
                     AKendaraan = false
                 end
             end)
@@ -46,13 +46,13 @@ CreateThread(function ()
             })
             zoneAmbil:onPlayerInOut(function(isPointInside)
                 if isPointInside then
-                    exports['rhid-drawtext']:DrawText("E - Buka Garasi" .. "<br>" .. g.label)
+                    exports['qb-drawtext']:DrawText("E - Buka Garasi" .. "<br>" .. g.label)
                     AKendaraan = true
                     currentGarage = g
                     indexGarage = i
                 else
-                    exports['rhid-menu']:closeMenu()
-                    exports['rhid-drawtext']:HideText()
+                    exports['qb-menu']:closeMenu()
+                    exports['qb-drawtext']:HideText()
                     AKendaraan = false
                 end
             end)
@@ -68,12 +68,12 @@ CreateThread(function ()
             zoneMasukin:onPlayerInOut(function(zonaMsukin)
                 if zonaMsukin then
                     if IsPedInAnyVehicle(PlayerPedId(), true) then
-                        exports['rhid-drawtext']:DrawText("E - Simpan Kendaraan" .. "<br>" .. g.label)
+                        exports['qb-drawtext']:DrawText("E - Simpan Kendaraan" .. "<br>" .. g.label)
                         MKendaraan = true
                         indexGarage = i
                     end
                 else
-                    exports['rhid-drawtext']:HideText()
+                    exports['qb-drawtext']:HideText()
                     MKendaraan = false
                 end
             end)
@@ -111,13 +111,13 @@ CreateThread(function()
                             if GetPedInVehicleSeat(GetVehiclePedIsIn(PlayerPedId()), -1) == PlayerPedId() then
                                 print("Masukin")
                                 StoreOwnedCarsMenu(indexGarage)
-                                exports['rhid-drawtext']:KeyPressed()
+                                exports['qb-drawtext']:KeyPressed()
                                 MKendaraan = false
                             else
                                 print("Hanya Untuk Pengemudi Kendaraan")
                             end
                         else
-                            exports['rhid-drawtext']:KeyPressed()
+                            exports['qb-drawtext']:KeyPressed()
                             print("Harus Berada Di Dalam Kendaraan")
                         end
                     elseif AKendaraan then

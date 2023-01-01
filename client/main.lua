@@ -78,10 +78,10 @@ function ListOwnedCarsMenu(data)
                 header = "⬅ Kembali",
                 txt = "",
                 params = {
-                    event = "rhid-menu:closeMenu",
+                    event = "qb-menu:closeMenu",
                 }
             }
-			exports['rhid-menu']:openMenu(elements)
+			exports['qb-menu']:openMenu(elements)
 		end
 	end, data.garasi)
 end
@@ -187,10 +187,10 @@ function ReturnOwnedCarsMenu(data)
 			header = "⬅ Kembali",
 			txt = "",
 			params = {
-				event = "rhid-menu:closeMenu",
+				event = "qb-menu:closeMenu",
 			}
 		}
-		exports['rhid-menu']:openMenu(ImpoundMenu)
+		exports['qb-menu']:openMenu(ImpoundMenu)
 	end)
 end
 -- End of Car Code
