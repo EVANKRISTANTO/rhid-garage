@@ -78,17 +78,13 @@ function ListOwnedCarsMenu(data)
                 header = "⬅ Kembali",
                 txt = "",
                 params = {
-                    event = "qb-menu:closeMenu",
+                    event = "rhid-menu:closeMenu",
                 }
             }
-			exports['qb-menu']:openMenu(elements)
+			exports['rhid-menu']:openMenu(elements)
 		end
 	end, data.garasi)
 end
-
-RegisterNetEvent("rhid-garage:openListMenu", function (data)
-	ListOwnedCarsMenu({garasi = data.garasi, spawner = data.spawner})
-end)
 
 RegisterNetEvent("rhid-garage:spawnVehicle", function(data)
 	if data.stored then
@@ -191,17 +187,13 @@ function ReturnOwnedCarsMenu(data)
 			header = "⬅ Kembali",
 			txt = "",
 			params = {
-				event = "qb-menu:closeMenu",
+				event = "rhid-menu:closeMenu",
 			}
 		}
-		exports['qb-menu']:openMenu(ImpoundMenu)
+		exports['rhid-menu']:openMenu(ImpoundMenu)
 	end)
 end
 -- End of Car Code
-
-RegisterNetEvent("rhid-garage:impoundMenu", function (data)
-	ReturnOwnedCarsMenu({garage = data.garage})
-end)
 
 RegisterNetEvent("rhid-garage:takeImpound", function (data)
 	ESX.TriggerServerCallback('rhid-garage:checkMoneyCars', function(hasEnoughMoney)
@@ -221,8 +213,6 @@ end)
 -- Store Vehicles
 function StoreVehicle(vehicle, props)
 	local exitLocation = nil
-
-	exports['qb-drawtext']:KeyPressed()
 	
 	for k,v in pairs (vehInstance) do
 		if ESX.Math.Trim(v.plate) == ESX.Math.Trim(props.plate) then
@@ -254,7 +244,6 @@ function StoreVehicle(vehicle, props)
 	Config.Notify("Kendaraan berhasil di masukkan ke dalam garasi", "success")
 end
 
-
 local function doCarDamage(data)
  
 	local mods = data.mods
@@ -264,6 +253,7 @@ local function doCarDamage(data)
 			SetVehicleDoorBroken(data.vehicle, tonumber(k), true)
 		end
 	end
+
 	for k, v in pairs(mods.tyreBurst) do
 		if v then
 			SetVehicleTyreBurst(data.vehicle, tonumber(k), true)
@@ -293,7 +283,7 @@ function SpawnVehicle(data)
 		end)
 		TriggerServerEvent('rhid-garage:setVehicleState', data.plate, false)
 	else
-		Config.Notify("Tidak cukup tempat untuk mengeluarkan kendaraan !")
+		Config.Notify("Tunggu lokasi spawn kendaraan kosong !")
 	end
 end
 
@@ -333,41 +323,33 @@ function DoesAPlayerDrivesVehicle(plate)
 end
 
 
--- Create Blips
 function CreateBlips()
-	
-
+	local blip
 	for k,v in pairs(Config.CarGarages) do
 		if v.useBlip == true then
-			local blip = AddBlipForCoord(vec3(v.propcoords.x, v.propcoords.y, v.propcoords.z))
-
-			SetBlipSprite (blip, Config.PGarageBlip.Sprite)
-			SetBlipColour (blip, Config.PGarageBlip.Color)
-			SetBlipDisplay(blip, Config.PGarageBlip.Display)
-			SetBlipScale  (blip, Config.PGarageBlip.Scale)
-			SetBlipAsShortRange(blip, true)
-
-			BeginTextCommandSetBlipName("STRING")
-			AddTextComponentString(v.label)
-			EndTextCommandSetBlipName(blip)
-			table.insert(BlipList, blip)
-		end
-	end
-
-	for k,v in pairs(Config.CarPounds) do
-		if v.useBlip == true then
-			local blip = AddBlipForCoord(v.propcoords)
-
-			SetBlipSprite (blip, Config.PoundBlip.Sprite)
-			SetBlipColour (blip, Config.PoundBlip.Color)
-			SetBlipDisplay(blip, Config.PoundBlip.Display)
-			SetBlipScale  (blip, Config.PoundBlip.Scale)
-			SetBlipAsShortRange(blip, true)
-
-			BeginTextCommandSetBlipName("STRING")
-			AddTextComponentString(v.label)
-			EndTextCommandSetBlipName(blip)
-			table.insert(BlipList, blip)
+			if v.type == "impound" then
+				blip = AddBlipForCoord(vec3(v.AmbilKendaraan.x, v.AmbilKendaraan.y, v.AmbilKendaraan.z))
+				SetBlipSprite (blip, Config.PoundBlip.Sprite)
+				SetBlipColour (blip, Config.PoundBlip.Color)
+				SetBlipDisplay(blip, Config.PoundBlip.Display)
+				SetBlipScale  (blip, Config.PoundBlip.Scale)
+				SetBlipAsShortRange(blip, true)
+				BeginTextCommandSetBlipName("STRING")
+				AddTextComponentString(v.label)
+				EndTextCommandSetBlipName(blip)
+				table.insert(BlipList, blip)
+			else
+				blip = AddBlipForCoord(vec3(v.AmbilKendaraan.x, v.AmbilKendaraan.y, v.AmbilKendaraan.z))
+				SetBlipSprite (blip, Config.PGarageBlip.Sprite)
+				SetBlipColour (blip, Config.PGarageBlip.Color)
+				SetBlipDisplay(blip, Config.PGarageBlip.Display)
+				SetBlipScale  (blip, Config.PGarageBlip.Scale)
+				SetBlipAsShortRange(blip, true)
+				BeginTextCommandSetBlipName("STRING")
+				AddTextComponentString(v.label)
+				EndTextCommandSetBlipName(blip)
+				table.insert(BlipList, blip)
+			end
 		end
 	end
 end
