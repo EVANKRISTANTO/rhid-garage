@@ -149,7 +149,7 @@ function ReturnOwnedCarsMenu(data)
 				local doesVehicleExist = false
 
 				for fck, you in pairs (vehInstance) do
-					if ESX.Math.Trim(you.plate) == ESX.Math.Trim(v.plate) then
+					if ESX.Math.Trim(you.plate) == ESX.Math.Trim(plate) then
 						if DoesEntityExist(you.vehicleentity) then
 							doesVehicleExist = true
 						else
@@ -159,7 +159,7 @@ function ReturnOwnedCarsMenu(data)
 					end
 				end
 
-				if not doesVehicleExist and not DoesAPlayerDrivesVehicle(data.plate) then
+				if not doesVehicleExist and not DoesAPlayerDrivesVehicle(plate) then
 					disabled = inImpound
 					text = txtInImpound
 				else
