@@ -26,9 +26,10 @@ server_scripts {
 }
 
 client_scripts {
-	'client/main.lua',
-	'client/prop.lua',
-	'client/deleter.lua'
+    'client/main.lua',
+    'client/zone.lua'
+    -- 'client/prop.lua',
+    -- 'client/deleter.lua'
 }
 
 dependencies {
